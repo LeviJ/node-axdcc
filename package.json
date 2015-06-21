@@ -13,5 +13,31 @@
   "engines": {
     "node": ">=0.10.13"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "readme": "#Node.js advanced XDCC library.\nexample requires Node.js IRC library. (`npm install irc`)\n\nIRC library for downloading files from XDCC bots.\n\nWorks with Windows and Linux\n\n##Usage\n\n    var axdcc = require('./lib/axdcc');\n    var request = new axdcc.Request(client, args);\n    request.emit(\"start\");\n\nRequests an XDCC from `{client}` based on `{args}`\n\n`{client}` IRC client (from IRC library)\n\n`{args}` Information about the XDCC pack\n    \n    args = {\n        \"pack\"              : < XDCC Pack ID >,\n        \"nick\"              : < XDCC Bot Nick >,\n        \"path\"              : < Path to download to >,\n        \"resume\"            : < Boolean, overwrite instead of resume >,\n        \"progressInterval\"  : < Interval in seconds progress is updated >\n    }\n\n##Callbacks\n\n    request.on('connect', pack);\nEmitted when an XDCC transfer starts\n\n`{pack}`      is the XDCC pack information, see `Pack format` below\n\n-------\n\n    request.on('progress', pack, recieved);\nEmitted when an XDCC transfer receives data\n\n`{pack}`      is the XDCC pack information, see `Pack format` below\n\n`{recieved}`  is the amount of data received\n \n-------\n \n    request.on('complete', pack);\nEmitted when an XDCC transfer is complete\n\n`{pack}`      is the XDCC pack information, see `Pack format` below\n\n-------\n\n    request.on('dlerror', pack, error);\nEmitted when an XDCC transfer encounters an error\n\n`{pack}`      is the XDCC pack information, see `Pack format` below\n\n`{error}`     is the error data\n \n##Listeners\n\n    request.emit('start');\nWhen emitted, XDCC transfer starts.\n\n-------\n\n    request.emit('cancel');\nWhen emitted, all XDCC transfers are cancelled.\n\n-------\n\n    request.emit('kill');\nWhen emitted, Request don't react on irc anymore.\n\n##Pack format\n    pack = {\n        \"command\"   : <DCC command of transfer(SEND/ACCEPT)>\n        \"filename\"  : <Name of file being transferred>\n        \"ip\"        : <IP of file sender>\n        \"port\"      : <Port of file sender>\n        \"filesize\"  : <Size of file being transferred>\n        \"resumepos\" : <Resume position of the file>\n        \"location\"  : <Path to download to>\n    }",
+  "_id": "axdcc@0.2.23",
+  "dist": {
+    "shasum": "9a491cf2ff8d3faffa884f2087656f97c701e1d1",
+    "tarball": "http://registry.npmjs.org/axdcc/-/axdcc-0.2.23.tgz"
+  },
+  "_from": "axdcc@*",
+  "_npmVersion": "1.3.6",
+  "_npmUser": {
+    "name": "davarga",
+    "email": "varga.daniel@gmx.de"
+  },
+  "maintainers": [
+    {
+      "name": "davarga",
+      "email": "Varga.daniel@gmx.de"
+    }
+  ],
+  "directories": {},
+  "_shasum": "9a491cf2ff8d3faffa884f2087656f97c701e1d1",
+  "_resolved": "https://registry.npmjs.org/axdcc/-/axdcc-0.2.23.tgz",
+  "homepage": "https://github.com/DaVarga/node-xdcc",
+  "dependencies": {
+    "find-port": "^1.0.1",
+    "moira": "^1.1.2"
+  }
 }
